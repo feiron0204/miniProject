@@ -11,10 +11,11 @@ public class BoardWriteFormService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		HttpSession httpSession=request.getSession();
-		if(httpSession.getAttribute("id")==null) {
+		if(httpSession.getAttribute("memId")==null) {
 			return "/board/loginPlz.jsp";
 		}
 		return "/board/boardWriteForm.jsp";
 	}
 
 }
+

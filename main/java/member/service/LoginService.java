@@ -21,27 +21,14 @@ public class LoginService implements CommandProcess {
 		//이제 싱글톤으로 받을꺼임
 		//MemberDAO memberDAO = new MemberDAO();
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		MemberDTO memberDTO=memberDAO.login(id,pwd);//호출
+		MemberDTO memberDTO = memberDAO.login(id,pwd);//호출
 		//응답
-		/*
-		 * request.setAttribute("name", name); 
-		 * request.setAttribute("id", id);
-		 */
 		
 		
 		if(memberDTO==null)
 			return "/member/loginFail.jsp";
 		else {
-			//쿠키
-			/*
-			 * Cookie cookie = new Cookie("memName",name);//쿠키 생성
-			 * cookie.setPath("/mvcMember"); cookie.setMaxAge(3); //클라이언트에게 보내주기
-			 * response.addCookie(cookie);
-			 * 
-			 * Cookie cookie2 = new Cookie("memId",id);//쿠키 생성
-			 * cookie2.setPath("/mvcMember"); cookie2.setMaxAge(3); //클라이언트에게 보내주기
-			 * response.addCookie(cookie2); 
-			 */			
+				
 			//세션
 			HttpSession session = request.getSession();//세션생성
 			session.setAttribute("memName", memberDTO.getName());

@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>로그인 실패</h3>
+<script type="text/javascript">
+window.onload=function(){
+	alert("로그인 실패!");
+	location.href='/miniProject';
+}
+</script>
 </body>
 </html>
