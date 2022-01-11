@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-//@WebServlet("*.do")
+@WebServlet(
+		urlPatterns = {"*.do"},
+		initParams = {
+				@WebInitParam(name="propertyConfig",value = "command.properties")
+		})
 public class ControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	   private Map<String, Object> map = new HashMap<String, Object>();
@@ -27,16 +32,16 @@ public class ControlServlet extends HttpServlet {
 	      String propertyConfig = config.getInitParameter("propertyConfig");
 	      System.out.println("propertyConfig = " + propertyConfig);
 	      
-	      //String realFolder = config.getServletContext().getRealPath("/WEB-INF");
-	      //String realPath = realFolder + "/" + propertyConfig;
-	      //System.out.println("realPath = " +realPath);
+	      String realFolder = config.getServletContext().getRealPath("/WEB-INF");
+	      String realPath = realFolder + "/" + propertyConfig;
+	      System.out.println("realPath = " +realPath);
 	      
 	      FileInputStream fin = null;
 	      Properties properties = new Properties();
 	      
 	      try {
-	         fin = new FileInputStream(propertyConfig);
-	         //fin = new FileInputStream(realPath);
+//	         fin = new FileInputStream(propertyConfig);
+	         fin = new FileInputStream(realPath);
 	         
 	         properties.load(fin);
 	         System.out.println("properties = "+properties);

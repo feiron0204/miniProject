@@ -5,11 +5,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.control.CommandProcess;
 
-public class BoardWriteFormService implements CommandProcess {
+public class BoardViewService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		request.setAttribute("display", "/board/boardWriteForm.jsp");
+		String pg = request.getParameter("pg");
+
+		// 응답
+		request.setAttribute("seq", request.getParameter("seq"));
+		request.setAttribute("pg", request.getParameter("pg"));
+		request.setAttribute("display", "/board/boardView.jsp");
 		return "/index.jsp";
 	}
 

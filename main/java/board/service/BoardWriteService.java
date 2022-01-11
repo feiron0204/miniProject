@@ -1,39 +1,44 @@
 package board.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
-import board.bean.BoardDTO;
 import board.dao.BoardDAO;
 
 public class BoardWriteService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		boolean result=false;
 		
-		HttpSession httpSession=request.getSession();
-		String id=(String) httpSession.getAttribute("memId");
-		String name=(String) httpSession.getAttribute("memName");
-		String email=(String) httpSession.getAttribute("memEmail");
-		String subject=request.getParameter("subject");
-		String content=request.getParameter("content");
+		//데이터
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
 		
-		BoardDTO boardDTO = new BoardDTO();
-		boardDTO.setId(id);
-		boardDTO.setName(name);
-		boardDTO.setEmail(email);
-		boardDTO.setSubject(subject);
-		boardDTO.setContent(content);
+		//세션
+		HttpSession session = request.getSession();//세션생성
+		String id=(String)session.getAttribute("memId");
+		String name=(String)session.getAttribute("memName");
+		String email=(String)session.getAttribute("memEmail");
 		
+		//근데 DTO만들면 너무 과함 그래서 MAP으로 만들꺼임
+		Map<String, String> map=new HashMap<String,String>();
+		map.put("id", id);
+		map.put("name", name);
+		map.put("email", email);
+		map.put("subject", subject);
+		map.put("content", content);
+		
+		//DB
 		BoardDAO boardDAO=BoardDAO.getInstance();
-		result=boardDAO.boardWrite(boardDTO);
+		boardDAO.boardWrite(map);
 		
-		if(result) return "/board/boardWriteOk.jsp";
-		else return "/board/boardWriteFail.jsp";
+		return "/board/boardWrite.jsp";
 	}
 
 }

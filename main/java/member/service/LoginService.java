@@ -14,28 +14,44 @@ public class LoginService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		//데이터받기
-		String id=request.getParameter("id");
-		String pwd=request.getParameter("pwd");
+		//데이터
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		
 		//DB
-		//이제 싱글톤으로 받을꺼임
-		//MemberDAO memberDAO = new MemberDAO();
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		MemberDTO memberDTO = memberDAO.login(id,pwd);//호출
-		//응답
 		
+		MemberDTO memberDTO = memberDAO.login(id, pwd);//호출
 		
+		//응답	
+		String loginResult = null;
 		if(memberDTO==null)
-			return "/member/loginFail.jsp";
-		else {
-				
+			loginResult = "fail";
+		else {						
 			//세션
-			HttpSession session = request.getSession();//세션생성
+			HttpSession session = request.getSession();//세션 생성
 			session.setAttribute("memName", memberDTO.getName());
 			session.setAttribute("memId", id);
 			session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
-			return "/";
+				
 		}
+		request.setAttribute("loginResult", loginResult);
+		return "/member/login.jsp";
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

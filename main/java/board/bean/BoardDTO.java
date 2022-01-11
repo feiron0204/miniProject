@@ -17,5 +17,5 @@ public class BoardDTO {
 		private int reply;
 		
 		private int hit;
-		
+		private String logtime; //DB에서 스트링으로 꺼내올꺼임
 }

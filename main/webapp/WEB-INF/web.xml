@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>miniProject</display-name>
-  <servlet>
+  
+   <!-- <servlet>
   	<servlet-name>ControlServlet</servlet-name>
-  	<!-- 별명붙히기 -->
+  	별명붙히기
   	<servlet-class>com.control.ControlServlet</servlet-class>
-  	<!-- 누가 서블릿이냐!! 패키지명까지 써줘야 풀네임임 -->
-  	<!-- properties 알려주기 -->
+  	누가 서블릿이냐!! 패키지명까지 써줘야 풀네임임
+  	properties 알려주기
   	<init-param>
   		<param-name>propertyConfig</param-name>
-  		<!-- \ 이거하나는 이스케이프문자로 처리되버림 -->
-  		<!-- <param-value>C:\\java_ee\\workspace\\mvcMember\\src\\main\\webapp\\WEB-INF\\command.properties</param-value> -->
-  		<param-value>C:/java_ee/workspace/miniProject/src/main/webapp/WEB-INF/command.properties</param-value>
+  		\ 이거하나는 이스케이프문자로 처리되버림
+  		<param-value>C:\\java_ee\\workspace\\mvcMember\\src\\main\\webapp\\WEB-INF\\command.properties</param-value>
+  		<param-value>C:/java_ee/workspace/miniProjectT/src/main/webapp/WEB-INF/command.properties</param-value>
   	</init-param>
   </servlet>
+  
   <servlet-mapping>
   	<servlet-name>ControlServlet</servlet-name>
   	<url-pattern>*.do</url-pattern>
-  	<!-- *.do 하면 ControlServlet을 부른다 -->
+  	*.do 하면 ControlServlet을 부른다
   </servlet-mapping>
-  <!-- 서블릿어노테이션 주석함 -->
+  서블릿어노테이션 주석함 -->
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
 </web-app>

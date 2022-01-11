@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context docBase="mvcMember" path="/mvcMember" reloadable="true" source="org.eclipse.jst.jee.server:mvcMember">
+<Context docBase="miniProject" path="/miniProject" reloadable="true" source="org.eclipse.jst.jee.server:miniProject">
 	<Resource 	name="jdbc/oracle"
 				type="javax.sql.DataSource"
 				driverClassName="oracle.jdbc.driver.OracleDriver"

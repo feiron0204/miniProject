@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<c:choose>
-
-	<c:when test="${sessionScope.memId!=null }">
-		<jsp:include page="/member/loginOk.jsp" />
-	</c:when>
-	
-	<c:otherwise>
-		<jsp:include page="/member/loginForm.jsp" />
-	</c:otherwise>
-	
-</c:choose>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${sessionScope.memId == null}">
+    <jsp:include page="/member/loginForm.jsp" />
+</c:if>
+<c:if test="${memId !=null }">
+    <jsp:include page="/member/loginOk.jsp" />
+</c:if>
+<%-- jquery 사용해서 더이상 사용안함
+<c:if test="${memId==null&&loginResult == 'fail' }">
+    <jsp:include page="/member/loginFail.jsp" />
+</c:if>
+ --%>
