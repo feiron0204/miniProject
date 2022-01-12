@@ -1,8 +1,8 @@
 $(function(){
 	$.ajax({
 		type:'post',
-		url:'/miniProject/board/getBoardView.do?seq='+$('#seq').val(),
-		data:'seq:'+$('#seq').val(),
+		url:'/miniProject/board/getBoardView.do',
+		data:'seq='+$('#seq').val(),
 		dataType:'json',
 		success:function(data){
 			console.log(data);
