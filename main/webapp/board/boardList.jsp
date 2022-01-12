@@ -34,6 +34,27 @@
 		color: cyan;
 		text-decoration:none;
 }
+
+#boardPagingDiv span {
+	margin: 5px;
+	padding: 5px;
+	border: 1px white solid;
+}
+
+#currentPaging{
+	color:red;
+	cursor:pointer;
+}
+
+#paging{
+	cursor:pointer;
+}
+
+#boardPagingDiv{
+text-align: center;
+font-size:13pt;
+margin-top: 10px;
+}
 </style>   
 <input type="hidden" name="pg" id="pg" value="${pg}">    
 <table border="1" cellspacing="0" cellpadding="5" id="boardListTable" frame="hsides" rules="rows">
@@ -45,5 +66,11 @@
 		<th width="100">조회수</th>
 	</tr>
 </table>
+<div id="boardPagingDiv"></div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/miniProject/js/boardList.js"></script>
+<script type="text/javascript">
+function boardPaging(pg2){
+	location.href="/miniProject/board/boardList.do?pg="+pg2;
+}
+</script>

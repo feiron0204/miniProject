@@ -2,32 +2,35 @@
 	pageEncoding="UTF-8"%>
 
 <style type="text/css">
-#boardWriteForm div {
+#boardModifyForm div {
 	color: red;
 	font-size: 8pt;
 	font-weight: bold;
 }
 </style>
-<h3>글쓰기</h3>
-<form name="boardWriteForm" id="boardWriteForm" >
+
+<h3>수정하기</h3>
+
+<input type="hidden" id="seq" name="seq" value="${boardDTO.seq }">
+<form name="boardModifyForm" id="boardModifyForm" >
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<td width="100" align="center">제목</td>
 			<td>
-				<input type="text" name="subject" id="subject" size="30" placeholder="제목입력">
+				<input type="text" name="subject" id="subject" size="30" value="${boardDTO.subject }">
 				<div id="subjectDiv"></div>
 			</td>
 		</tr>
 		<tr>
 			<td width="100" align="center">내용</td>
 			<td>
-				<textarea rows="15" cols="50" placeholder="내용입력" name="content" id="content"></textarea>
+				<textarea rows="15" cols="50" name="content" id="content" >${boardDTO.content }</textarea>
 				<div id="contentDiv"></div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-			<input type="button" id="boardWriteBtn" value="글쓰기"> 
+			<input type="button" id="boardModifyBtn" value="수정하기"> 
 			<input type="reset" id="resetBtn" value="다시작성">
 			<input type="button" id="back" value="뒤로가기" onclick="history.back()">
 			</td>
@@ -36,8 +39,9 @@
 </form>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
-	$('#boardWriteBtn').click(function() {
+	$('#boardModifyBtn').click(function() {
 		$('#subjectDiv').empty();
 		$('#contentDiv').empty();
 		
@@ -48,13 +52,21 @@
 		else
 			$.ajax({
 				type:'post',
-				url:'/miniProject/board/boardWrite.do',
+				url:'/miniProject/board/boardModify.do',
+				dataType: "text",
 				data:{
+					'seq':$("#seq").val(),
 					'subject':$("#subject").val(),
 					'content':$('#content').val()
 				},
-				success:function(){
-					alert('글쓰기 성공');
+				success:function(data){
+					if(data.trim()=='1'){
+					alert('수정 성공');
+					}else{
+						alert('수정 실패');
+					}
+						
+					location.href="/miniProject/board/boardList.do?pg="+${pg};
 				},
 				error:function(err){
 					alert(err);
@@ -68,7 +80,6 @@
 		
 	});
 </script>
-
 
 
 

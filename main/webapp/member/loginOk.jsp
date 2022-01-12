@@ -3,7 +3,6 @@
 
 
 <h3>${ sessionScope.memName }님 로그인</h3>
-
 <input type="button" value="회원정보수정" onclick="location.href='/miniProject/member/modifyForm.do'">
 <input type="button" value="로그아웃" id="logoutBtn" >
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <style type="text/css" >
 #boardViewTable th{
 	font-size: 16px;
@@ -7,16 +8,15 @@
 
 #boardViewTable td{
 	font-size: 13px;
-	vertical-align:top;
+	/* vertical-align:top; */
 }
 
 #boardViewTable{
 	border-color:yellow;
 	margin-left: 10pt;
+	table-layout: fixed;
 }
-#contentSpan{
-	white-space: pre-line;
-}
+
 
 </style>   
 <%--
@@ -47,8 +47,8 @@
 		</td>
 	</tr> 
 </table>--%>
-	
-<%-- <input type="hidden" name="pg" id="pg" value="${pg}">     --%>
+	<form id="boardViewForm">
+<input type="hidden" name="pg" id="pg" value="${pg}">    
 <input type="hidden" name="seq" id="seq" value="${seq}">  
 <table border="1" cellspacing="0" cellpadding="5" id="boardViewTable" frame="hsides" rules="rows">
 	<tr>
@@ -62,13 +62,62 @@
 		<td width="150">조회수 : <span id="hitSpan"></span></td>
 	</tr>
 	<tr>
-		<td colspan="3" height="300">
-			<span id="contentSpan" ></span>
+		<td colspan="3" height="300" valign="top" >
+			<pre style="white-space: pre-line; word-break: break-all;"><span id="contentSpan" ></span></pre>
 		</td>
 	</tr>
 </table>
 <input type="button" value="목록" onclick="location.href='/miniProject/board/boardList.do?pg=${pg}'">
-	
-	
+<span id ="boardViewSpan">
+<input type="button" value="글수정" onclick="mode(1)"><!-- 글번호, 페이지번호를 가져가야함(seq,pg) -->
+<input type="button" value="글삭제" onclick="mode(2)"><!-- 글번호 페이지는1로돌리면됨    (seq)-->
+</span>
+<input type="button" value="답글">
+	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/miniProject/js/boardView.js"></script>
+<script type="text/javascript" >
+$(function(){
+	$.ajax({
+		type:'post',
+		url:'/miniProject/board/getBoardView.do',
+		data:'seq='+$('#seq').val(),
+		dataType:'json',
+		success:function(data){
+			console.log(data);
+				/* $('#subjectSpan').text(data.boardDTO.subject);
+				$('#seqSpan').text(data.boardDTO.seq);
+				$('#idSpan').text(data.boardDTO.id);
+				$('#hitSpan').text(data.boardDTO.hit);
+				$('#contentSpan').text(data.boardDTO.content); */
+			$('#subjectSpan').text(data.subject);
+			$('#seqSpan').text(data.seq);
+			$('#idSpan').text(data.id);
+			$('#hitSpan').text(data.hit);
+			$('#contentSpan').text(data.content);
+			if(data.memId==data.id){
+				$('#boardViewSpan').show();
+			}else{
+				$('#boardViewSpan').hide();
+			}
+		},
+		error:function(err){
+			alert(err);
+		}
+	});//ajax
+});
+
+</script>
+<script>
+function mode(num){
+	if(num==1){//글수정
+		document.getElementById("boardViewForm").method='post';
+		document.getElementById("boardViewForm").action='/miniProject/board/boardModifyForm.do';
+		document.getElementById("boardViewForm").submit();
+	}else if(num==2){//글삭제
+		document.getElementById("boardViewForm").method='post';
+		document.getElementById("boardViewForm").action='/miniProject/board/boardDelete.do';
+		document.getElementById("boardViewForm").submit();
+	}
+}
+
+</script>

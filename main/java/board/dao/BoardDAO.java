@@ -170,5 +170,59 @@ public class BoardDAO {
 		}
 		return boardDTO;
 	}
+	
+	public int getTotalA() {
+		int totalA=0;
+		String sql="select count(*) as total from board";
+		try {
+			conn=ds.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				totalA=rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs!=null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return totalA;
+	}
+
+	public int boardModify(BoardDTO boardDTO) {
+		int result=0;
+		String sql="update board set subject=?, content=? where seq=?";
+		try {
+			conn=ds.getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, boardDTO.getSubject());
+			pstmt.setString(2, boardDTO.getContent());
+			pstmt.setInt(3, boardDTO.getSeq());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return result;
+	}
 
 }

@@ -42,6 +42,8 @@ $(function(){
 						location.href='/miniProject/board/boardView.do?seq='+$(this).parent().prev().text()+'&pg='+$('#pg').val();
 					}
 				});//click
+				
+				$('#boardPagingDiv').html(data.boardPaging);
 		},
 		error:function(err){
 			alert(err);
