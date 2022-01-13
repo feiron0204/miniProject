@@ -16,8 +16,8 @@
  	<insert id="write" parameterType="memberDTO">
  		insert into member values (#{name},#{id},#{pwd},#{gender},#{email1},#{email2},#{tel1},#{tel2},#{tel3},#{zipcode},#{addr1},#{addr2},sysdate)
  	</insert>
- 	<select id="isExistId" parameterType="String" resultType="memberDTO">
- 		select * from member where id=#{id}
+ 	<select id="isExistId" parameterType="String" resultType="boolean">
+ 		select (case when count(*)=1 then 1 else 0 end) from member where id=#{id}
  	</select>
  	<select id="modify" parameterType="String" resultType="memberDTO">
  		select * from member where id=#{id}

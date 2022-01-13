@@ -128,12 +128,8 @@ public class MemberDAO {
 	 */
 
 	public boolean isExistId(String id) {
-		boolean exist = false;
 		SqlSession sqlSession=sqlSessionFactory.openSession();
-		MemberDTO memberDTO=sqlSession.selectOne("memberSQL.isExistId",id);
-		if(memberDTO!=null) {
-			exist=true;
-		}
+		boolean exist=sqlSession.selectOne("memberSQL.isExistId",id);
 		sqlSession.close();
 		return exist;
 	}
