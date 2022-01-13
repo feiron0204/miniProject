@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <configuration>
+ 	<properties resource="db.properties"/>
+ 	
+ 	<typeAliases><!-- 맵퍼파일에서 별명으로 불러줄수있음!! -->
+ 		<typeAlias type="member.bean.MemberDTO" alias="memberDTO"/>
+ 	</typeAliases>
+ 
+ 	<environments default="development"><!-- s는 복수 없으면 단수 그렇다면 안에 적어도한개의 environment 있어야겟지? -->
+ 		<environment id="development"><!-- 이거 ㅎ -->
+ 			<transactionManager type="JDBC"/><!-- 트렌젝션처리하는애 지정 -->
+ 			<dataSource type="POOLED"><!-- 커넥션풀 요청 / 풀안쓸꺼면 UNPOOLED -->
+ 			<!-- 이제 어디DB 어케드갈껀지 써줘야겟지? -->
+ 				<property name="driver" value="${jdbc.driver}"/>
+ 				<property name="url" value="${jdbc.url}"/>
+ 				<property name="username" value="${jdbc.username}"/>
+ 				<property name="password" value="${jdbc.password}"/>
+ 			</dataSource>			
+ 		</environment>
+ 	</environments>
+ 	<mappers><!-- 뭐가매퍼지 알려줘야지? s 는 복수 -->
+ 		<mapper resource="member/dao/memberMapper.xml"/><!-- 주의!! resource는 경로기때문에 /로 처리할것 -->
+ 	</mappers>
+ <!-- 외부파일 .properties 만들면 저거 다 EL로 처리해줄수있음. -->
+ </configuration>
+ 
+ 
