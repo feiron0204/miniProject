@@ -23,6 +23,18 @@
  		select * from member where id=#{id}
  	</select>
  	<update id="update" parameterType="memberDTO">
- 		update member set name=#{name},pwd=#{pwd},gender=#{gender},email1=#{email1},email2=#{email2},tel1=#{tel1},tel2=#{tel2},tel3=#{tel3},zipcode=#{zipcode},addr1=#{addr1},addr2=#{addr2},logtime=sysdate where id=#{id}
+ 		update member set name=#{name}
+ 						, pwd=#{pwd}
+ 						, gender=#{gender}
+ 						, email1=#{email1}
+ 						, email2=#{email2}
+ 						, tel1=#{tel1}
+ 						, tel2=#{tel2}
+ 						, tel3=#{tel3}
+ 						, zipcode=#{zipcode}
+ 						, addr1=#{addr1}
+ 						, addr2=#{addr2}
+ 						, logtime=sysdate 
+ 						where id=#{id}
  	</update>
  </mapper>
