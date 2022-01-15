@@ -56,6 +56,8 @@
 text-align: center;
 font-size:13pt;
 margin-top: 10px;
+display:flex;
+justify-content: space-between;
 }
 </style>   
 <input type="hidden" name="pg" id="pg" value="${pg}">    
@@ -82,7 +84,15 @@ margin-top: 10px;
 </table>
 
 <div id="imageboardPagingDiv" >
-${imageboardPaging}
+	<div >
+		<input type="button" id="imageboardDeleteBtn" value="선택삭제">
+	</div>
+	<div >
+		${imageboardPaging}
+	</div>
+	<div>
+		<input type="hidden" >
+	</div>
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>

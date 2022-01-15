@@ -15,7 +15,6 @@ import imageboard.bean.ImageboardDTO;
 public class ImageboardDAO {
 	private static ImageboardDAO instance;
 	private SqlSessionFactory sqlSessionFactory;
-
 	public static ImageboardDAO getInstance() {
 		synchronized (ImageboardDAO.class) {
 			if (instance == null) {
