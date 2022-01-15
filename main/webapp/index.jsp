@@ -25,7 +25,7 @@ body {
 #container {
 	margin: auto;
 	width: 1300px;
-	height: 500px;
+	height: 700px;
 	border: 1px blue solid;
 }
 

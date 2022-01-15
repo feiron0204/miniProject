@@ -10,6 +10,7 @@
  	<typeAliases><!-- 맵퍼파일에서 별명으로 불러줄수있음!! -->
  		<typeAlias type="member.bean.MemberDTO" alias="memberDTO"/>
  		<typeAlias type="board.bean.BoardDTO" alias="boardDTO"/>
+ 		<typeAlias type="imageboard.bean.ImageboardDTO" alias="imageboardDTO"/>
  	</typeAliases>
  
  	<environments default="development"><!-- s는 복수 없으면 단수 그렇다면 안에 적어도한개의 environment 있어야겟지? -->
@@ -27,6 +28,7 @@
  	<mappers><!-- 뭐가매퍼지 알려줘야지? s 는 복수 -->
  		<mapper resource="member/dao/memberMapper.xml"/><!-- 주의!! resource는 경로기때문에 /로 처리할것 -->
  		<mapper resource="board/dao/boardMapper.xml"/>
+ 		<mapper resource="imageboard/dao/imageboardMapper.xml"/>
  	</mappers>
  <!-- 외부파일 .properties 만들면 저거 다 EL로 처리해줄수있음. -->
  </configuration>
