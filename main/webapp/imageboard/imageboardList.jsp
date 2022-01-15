@@ -73,7 +73,7 @@ justify-content: space-between;
 	<c:forEach var="imageboardDTO" items="${list }">
 		<tr>
 			<td align="center"> ${imageboardDTO.seq} </td>
-			<td align="center"> <img src='../storage/${imageboardDTO.image1}' alt="사진" width="100" height="auto"> </td>
+			<td align="center"> <img src='/miniProject/storage/${imageboardDTO.image1}' alt="사진" width="100" height="auto"> </td>
 			<td align="center"><a class="imageNameA" href="#"> ${imageboardDTO.imageName }</a> </td>
 			<td align="center"> <fmt:formatNumber value='${imageboardDTO.imagePrice}' pattern="\#,###.##"/> </td>
 			<td align="center"> ${imageboardDTO.imageQty } </td>
@@ -84,7 +84,7 @@ justify-content: space-between;
 </table>
 
 <div id="imageboardPagingDiv" >
-	<div >
+	<div style="margin-left: 10px;">
 		<input type="button" id="imageboardDeleteBtn" value="선택삭제">
 	</div>
 	<div >
