@@ -31,9 +31,11 @@
 	<c:if test="${memId !=null }">
 		<li><a href="/miniProject/board/boardWriteForm.do">글쓰기</a></li>
 		<li><a href="/miniProject/imageboard/imageboardWriteForm.do">이미지등록</a></li>
+		<li><a href="/miniProject/guestbook/guestbookWriteForm.do">방명록작성</a></li>
 	</c:if>
 	<li><a href="/miniProject/board/boardList.do?pg=1">목록</a></li><!-- 변수로 page를 못씀 키워드라서 -->
 	<li><a href="/miniProject/imageboard/imageboardList.do?pg=1">이미지목록</a></li>
+	<li><a href="/miniProject/guestbook/guestbookList.do?pg=1">방명록보기</a></li>
 </ul>
 
 

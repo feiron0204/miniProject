@@ -10,9 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
-import board.bean.BoardDTO;
-import board.bean.BoardPaging;
-import board.dao.BoardDAO;
 import imageboard.bean.ImageboardDTO;
 import imageboard.bean.ImageboardPaging;
 import imageboard.dao.ImageboardDAO;

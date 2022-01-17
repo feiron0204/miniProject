@@ -17,26 +17,21 @@
  	</insert>
  	
  	<select id="getImageboardList" parameterType="java.util.Map" resultType="imageboardDTO">
- 		select * from (select rownum rn,tt.* from 
- 				(select seq
- 						,imageId
- 						,imageName
- 						,imagePrice
- 						,imageQty
- 						,imageContent
- 						,image1
- 						,logtime
- 						 from imageboard order by seq desc) tt) 
- 				where 
- 				<!-- between #{startNum} and #{endNum}  이것도가능 -->
- 				rn 
- 				<!-- <![CDATA[>=]]> 이것도가능 -->
- 				&gt;=
- 				#{startNum}
- 				and rn 
- 				<!-- <![CDATA[<=]]> 이것도가능 -->
- 				&lt;=
- 				#{endNum}
+ 		select * from 
+ 				(select rownum rn,tt.* from 
+	 					(select *
+	 						 from imageboard order by seq desc) tt
+	 			) 
+		where 
+		<!-- rn between #{startNum} and #{endNum}  이것도가능 -->
+		rn 
+		<!-- <![CDATA[>=]]> 이것도가능 -->
+		&gt;=
+		#{startNum}
+		and rn 
+		<!-- <![CDATA[<=]]> 이것도가능 -->
+		&lt;=
+		#{endNum}
  	</select>
  	
  	<select id="getTotalA" resultType="int">

@@ -17,22 +17,22 @@
 	margin-left: 10pt;
 }
 /* a태그 활성화순간 */
-.subjectA:link{
+.imageNameA:link{
 		color: white;
 		text-decoration:none;
 }
 /* 클릭당한경험 유 */
-.subjectA:visited{
+.imageNameA:visited{
 		color: white;
 		text-decoration:none;
 }
 /* 마우스올라왔을때 */
-.subjectA:hover{
+.imageNameA:hover{
 		color: green;
 		text-decoration:underline;
 }
 /* 마우스클릭동안 */
-.subjectA:active{
+.imageNameA:active{
 		color: cyan;
 		text-decoration:none;
 }
@@ -65,10 +65,10 @@ justify-content: space-between;
 	<tr>
 		<th width="100">글번호</th>
 		<th width="100">이미지</th>
-		<th width="100">상품명</th>
-		<th width="100">단가</th>
+		<th width="150">상품명</th>
+		<th width="150">단가</th>
 		<th width="100">개수</th>
-		<th width="100">합계</th>
+		<th width="150">합계</th>
 	</tr>
 	<c:forEach var="imageboardDTO" items="${list }">
 		<tr>
