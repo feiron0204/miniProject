@@ -37,4 +37,7 @@
  	<select id="getTotalA" resultType="int">
  		select count(*) from imageboard
  	</select>
+ 	<delete id="delete" parameterType="int">
+ 		delete from imageboard where seq=${seq}
+ 	</delete>
  </mapper>

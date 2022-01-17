@@ -50,6 +50,12 @@ public class ImageboardDAO {
 		sqlSession.close();
 		return totalA;
 	}
+	public void delete(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.delete("imageboardSQL.delete", seq);
+		sqlSession.commit();
+		sqlSession.close();
+	}
 	
 	
 }

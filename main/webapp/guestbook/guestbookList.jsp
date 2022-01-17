@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
     
 <style type="text/css" >
-#guestbookTable th{
+.guestbookTable th{
 	font-size: 16px;
 }
 
-#guestbookTable td{
+.guestbookTable td{
 	font-size: 13px;
 }
 
-#guestbookTable{
+.guestbookTable{
 	border-color:yellow;
 	margin:10pt;
 }
@@ -56,7 +56,7 @@ $(function(){
 					border:"1",
 					cellspacing:"0", 
 					cellpadding:"5", 
-					id:"guestbookTable"
+					class:"guestbookTable"
 				}).append($('<tr/>')
 				.append($('<th/>',{
 					width:"100",
