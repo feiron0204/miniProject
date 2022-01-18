@@ -40,4 +40,7 @@
  	<delete id="delete" parameterType="int">
  		delete from imageboard where seq=${seq}
  	</delete>
+ 	<select id="imageboardView" parameterType="int" resultType="imageboardDTO">
+ 		select * from imageboard where seq=#{seq}
+ 	</select>
  </mapper>

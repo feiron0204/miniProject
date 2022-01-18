@@ -55,6 +55,9 @@ text-align: center;
 font-size:13pt;
 margin-top: 10px;
 }
+.red{
+	color:red;
+}
 </style>   
 <input type="hidden" name="pg" id="pg" value="${pg}">    
 <table border="1" cellspacing="0" cellpadding="5" id="boardListTable" frame="hsides" rules="rows">

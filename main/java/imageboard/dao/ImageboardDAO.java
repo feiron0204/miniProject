@@ -56,6 +56,11 @@ public class ImageboardDAO {
 		sqlSession.commit();
 		sqlSession.close();
 	}
-	
+	public ImageboardDTO imageboardView(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		ImageboardDTO imageboardDTO=sqlSession.selectOne("imageboardSQL.imageboardView", seq);
+		sqlSession.close();
+		return imageboardDTO;
+	}
 	
 }

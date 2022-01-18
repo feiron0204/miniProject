@@ -66,5 +66,65 @@
  	<update id="boardModify" parameterType="boardDTO">
  		update board set subject=#{subject}, content=#{content} where seq=#{seq}
  	</update>
- 	
+ 	<update id="boardReply1" parameterType="boardDTO">
+ 		update board set step=step+1 where ref=#{ref} and step>#{step}
+ 	</update>
+ 	<insert id="boardReply2" parameterType="java.util.Map">
+ 		 insert into board(seq
+ 						, id
+ 						, name
+ 						, email
+ 						, subject
+ 						, content
+ 						, ref
+ 						, lev
+ 						, step
+ 						, pseq
+ 						, logtime)
+ 		 values (seq_board.nextval
+ 				, #{id}
+ 				, #{name}
+ 				, #{email}
+ 				, #{subject}
+ 				, #{content} 
+ 				, #{ref}
+ 				, #{lev}
+ 				, #{step}
+ 				, #{pseq}
+ 				, sysdate) 
+ 				<!-- insert into board(seq
+ 						, id
+ 						, name
+ 						, email
+ 						, subject
+ 						, content
+ 						, ref
+ 						, lev
+ 						, step
+ 						, pseq
+ 						, logtime)
+ 		 values (seq_board.nextval
+ 				, #{id}
+ 				, #{name}
+ 				, #{email}
+ 				, #{subject}
+ 				, #{content} 
+ 				, (select ref from board where seq=#{pseq})
+ 				, (select lev+1 as lev from board where seq=#{pseq})
+ 				, (select step+1 as step from board where seq=#{pseq})
+ 				, #{pseq}
+ 				, sysdate) -->
+ 	</insert>
+ 	<!-- <update id="boardReply3" parameterType="boardDTO" >
+ 		update board set reply=reply+1 where seq=#{seq}
+ 	</update> -->
+ 	<update id="boardReply3" parameterType="int" >
+ 		update board set reply=reply+1 where seq=#{pseq}
+ 	</update>
+ 	<update id="boardDelete1" parameterType="int">
+ 		update board set reply=reply-1 where seq=#{pseq}
+ 	</update>
+ 	<delete id="boardDelete2" parameterType="String">
+ 		delete from board where seq=#{seq}
+ 	</delete>
  </mapper>

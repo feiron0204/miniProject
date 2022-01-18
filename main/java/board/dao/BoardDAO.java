@@ -72,5 +72,43 @@ public class BoardDAO {
 		sqlSession.close();
 		return result;
 	}
+	public void boardReply(Map<String, String> map) {
+		//원글정보 옆에메소드시켜먹기
+		BoardDTO boardDTO=this.selectOne(Integer.parseInt(map.get("pseq")));
+		
+		//답글의 부족한부분추가
+		map.put("ref", boardDTO.getRef()+"");
+		map.put("lev", boardDTO.getLev()+1+"");
+		map.put("step", boardDTO.getStep()+1+"");
+		
+		//일꾼소환
+		SqlSession sqlSession=sqlSessionFactory.openSession();
+		
+		//step update
+		sqlSession.update("boardSQL.boardReply1",boardDTO);
+		
+		//insert
+		sqlSession.insert("boardSQL.boardReply2",map);
+		
+		//reply update
+		//sqlSession.update("boardSQL.boardReply3",boardDTO);
+		sqlSession.update("boardSQL.boardReply3",Integer.parseInt(map.get("pseq")));
+		//적용
+		sqlSession.commit();
+		//닫기
+		sqlSession.close();
+	}
 
+	public void boardDelete(String seq) {
+		BoardDTO boardDTO=selectOne(Integer.parseInt(seq));
+		
+		SqlSession sqlSession=sqlSessionFactory.openSession();
+		
+		sqlSession.update("boardSQL.boardDelete1",boardDTO.getPseq());
+		
+		sqlSession.delete("boardSQL.boardDelete2", seq);
+		
+		sqlSession.commit();
+		sqlSession.close();
+	}
 }

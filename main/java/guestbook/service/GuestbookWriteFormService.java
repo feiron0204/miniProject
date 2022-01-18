@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
-public class GuestbookWriteFromService implements CommandProcess {
+public class GuestbookWriteFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {

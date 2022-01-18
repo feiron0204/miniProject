@@ -72,7 +72,7 @@
 <input type="button" value="글수정" onclick="mode(1)"><!-- 글번호, 페이지번호를 가져가야함(seq,pg) -->
 <input type="button" value="글삭제" onclick="mode(2)"><!-- 글번호 페이지는1로돌리면됨    (seq)-->
 </span>
-<input type="button" value="답글">
+<input type="button" value="답글" onclick="mode(3)">
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" >
@@ -116,6 +116,10 @@ function mode(num){
 	}else if(num==2){//글삭제
 		document.getElementById("boardViewForm").method='post';
 		document.getElementById("boardViewForm").action='/miniProject/board/boardDelete.do';
+		document.getElementById("boardViewForm").submit();
+	}else if(num==3){
+		document.getElementById("boardViewForm").method='post';
+		document.getElementById("boardViewForm").action='/miniProject/board/boardReplyForm.do';
 		document.getElementById("boardViewForm").submit();
 	}
 }
